@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/checkOut.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <ul class = "nav-list">
+                <li><a href="/api/v1/home" class = "home nav-tag">Home</a></li>
+                <li><a href="/api/v1/shop" class = "shop nav-tag">Shopping</a></li>
+                <li><a href="/api/v1/admin" class = "admin nav-tag">Admin</a></li>
+                <ul id = "account-list">
+                    <a href="/api/v1/login" class="material-symbols-outlined" id = "account-symbol">account_circle</a>
+                    <ul class = "dropdown-list">
+
+                        <li><a href="/api/v1/register">Register</a></li>
+                        <li>
+                            <% if (!user){%>
+                                <a href="/api/v1/login"><%= "Login"%></a>
+                            <% }else{  %>
+                                <a href="#" id = "log-out"><%= "Log Out" %></a>
+                            <% } %>
+                        </li>
+                    </ul>
+                </ul>
+                
+                <li id = "cart-symbol"><a class="material-symbols-outlined cart-symbol-link" href = "/api/v1/check-out">shopping_cart</a></li>
+                
+
+                
+            </ul>
+        </nav>
+    </header>
+    <section>
+       
+        <main id = "main-checkout">
+            <section class ="section-container">
+                <section class = "shipping-address">
+                    <h3>1. Shipping Addresss</h3>
+                    <div></div>
+                    <div><a href="">Change</a></div>
+                    
+                </section>
+                <section class = "payment">
+                    <h3>2. Payment Methods</h3>
+                    <div></div>
+                    <div><a href="">Change</a></div>
+                </section>
+                <section class = "offer">
+                    <h3>3. Offers</h3>
+                    <div></div>
+                    <div><a href="">Change</a></div>
+                </section>
+                
+                    <section id = "review-item">
+                        <h3>4. Review Item and Shipping</h3>
+                        <div class = "item-section-container">
+                            <%for(let i = 0; i < items.length; i++){ %>
+                                <div class = "item-section">
+                                    
+                                    <img src=<%= items[i].image_link %>>
+                                    <h3><%= items[i].name %></h3>
+                                    <p><%= items[i].description %></p>
+                                    <h5><%= items[i].price %></h5>
+                                    <form class = "button-container" >
+                                        <input type="number" class = "change-cart-amount" min ="0" max = "99">
+                                        <input type="hidden" name = "cart-quantity" value = <%= items[i].quantity %>>
+                                        <input type="hidden" name = "cart-id" value = <%= items[i].id %>>
+                                        <button class = "cart-delete-button">Clear</button>
+                                    </form>
+                                    
+
+                                </div>
+                            <% } %>
+                        </div>
+                    </section>
+            </section>
+            
+                
+                <section id = "order-section">
+                    <button>Place your order</button>
+                    <br>
+                    <div id = "items-to-pay">
+                        <h2>Order Summary</h2>
+                        
+                        <ul id = "items-to-pay-list">
+                            <% items.forEach(item => { %>
+                                <li class = "each-item"><%= item.name %> x <%= item.quantity %>: <span style = "font-weight: bold;"><%= item.price %></span></li>
+                            <% }) %>
+                            
+                        </ul>
+                        
+                        <h2 class = "total-price">Total: $<%= totalPrice %></h2>
+                        
+                    </div>
+                </section>
+            
+        </main>
+    
+   
+    <script src = "/js/checkOut.js"></script>
+    <%if (user){%>
+        <script src = "/js/main.js"></script>
+    <%} %>
+    
+</body>
+</html>

@@ -1,0 +1,14 @@
+.empty-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 100vw;
+}
+
+.sad-robot{
+    height: 20vh;
+    width: 20vw;
+    margin-bottom: 5vh;
+}

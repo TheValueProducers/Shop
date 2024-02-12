@@ -1,0 +1,143 @@
+.empty-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 100vw;
+}
+
+.sad-robot{
+    height: 20vh;
+    width: 20vw;
+    margin-bottom: 5vh;
+}
+section{
+    display: flex;
+    height: 100vh;
+    width: auto;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.item-section{
+    display: grid;
+    
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 18% 18% 18% 30%;
+    row-gap: 1vh;
+    background-color: rgb(114, 114, 114);
+    width: 60vw;
+    height: 25vh;
+    margin: 3vh 0;
+    padding: 3vh 3vw;
+    
+    
+}
+
+.item-section img{
+    height: 90%;
+    border-radius: 1rem;
+    width: 8vw;
+    grid-row: 1/5;
+}
+.item-section h3, .item-section h5, .item-section p{
+    color: white;
+}
+
+.user-edit{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.cart-button{
+    width: 12vw;
+    max-height: 7vh;
+    border-radius: 8px;
+    font-size: 20px;
+    padding: 10px 10px;
+    border: none;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    transition: 0.4s background-color, 0.4s color;
+    box-shadow: 4px 4px 6px 0px rgba(0,0,0,0.2);
+    margin-right: 2vw;
+}
+    
+.cart-button:hover{
+    background-color: white;
+    color: blue;
+    
+}
+
+.cart-button:active{
+    background-color: white;
+    color: blue;
+
+}
+
+.quantity{
+    width: 4vw;
+    height: 5vh;
+    font-size: 2rem;
+    background-color: rgb(41, 166, 208);
+    color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem 0 rgba(0,0,0,0.2);
+}
+@media (max-width: 767px)  {
+    .cart-button{
+        font-size: 12px;
+        padding: 6px 6px;
+        border-radius: 4px;
+        width: 40%;
+    }
+    .item-section h3, .item-section h5, .item-section p{
+        font-size: 0.6rem;
+    }
+    .quantity{
+        height: 3vh;
+        font-size: 1.2rem;
+        width: 4vw;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px)  {
+    .cart-button{
+        font-size: 15px;
+        padding: 8px 8px;
+        border-radius: 6px;
+        width: 30%;
+    }
+    .item-section h3, .item-section h5, .item-section p{
+        font-size: 0.8rem;
+    }
+    .quantity{
+        height: 4vh;
+        font-size: 1.5rem;
+        width: 5vw;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px)  {
+    .cart-button{
+        font-size: 18px;
+        padding: 9px 9px;
+        border-radius: 7px;
+        width: 30%;
+    }
+    .item-section h3, .item-section h5, .item-section p{
+        font-size: 0.8rem;
+    }
+    .quantity{
+        height: 4.5vh;
+        font-size: 1.8rem;
+        width: 6vw;
+    }
+}
+
+

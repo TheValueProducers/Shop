@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Add Products</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/adminProduct.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+   
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class = "nav-list">
+                <li><a href="/api/v1/home" class = "home nav-tag">Home</a></li>
+                <li><a href="/api/v1/shop" class = "shop nav-tag">Shopping</a></li>
+                <li><a href="/api/v1/admin" class = "admin nav-tag">Admin</a></li>
+                <ul id = "account-list">
+                    <a href="/api/v1/login" class="material-symbols-outlined" id = "account-symbol">account_circle</a>
+                    <ul class = "dropdown-list">
+
+                        <li><a href="/api/v1/register">Register</a></li>
+                        <li>
+                            <% if (!user){%>
+                                <a href="/api/v1/login"><%= "Login"%></a>
+                            <% }else{  %>
+                                <a href="#" id = "log-out"><%= "Log Out" %></a>
+                            <% } %>
+                        </li>
+                    </ul>
+                </ul>
+                <li id = "cart-symbol"><a class="material-symbols-outlined cart-symbol-link" href = "/api/v1/check-out">shopping_cart</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <ul class = "nav-admin">
+            <li class = "nav-admin-tag"><a href="/api/v1/admin" class = "nav-admin-tag-link">Add Items</a></li>
+            <li class = "nav-admin-tag"><a href="/api/v1/admin-product" class = "nav-admin-tag-link">Items Management</a></li>
+        </ul>
+        <% if (items.length !== 0){ %>
+
+            <section class = "edit-section">
+                <%for(let i = 0; i < items.length; i++){ %>
+                    <div class = "item-section">
+                        
+                        <img src=<%= items[i].image_link %>>
+                        <h3><%= items[i].name %></h3>
+                        <p><%= items[i].description %></p>
+                        <h5>$<%= items[i].price %></h5>
+                        <div class = "button-container">
+                            <button class = "edit-button"><a href="/api/v1/admin-edit-items/<%= items[i].id %>">Edit</a></button>
+                            <button class = "delete-button">Clear</button>
+                        </div>
+                        
+
+                    </div>
+                <% } %>
+            </section>
+        <% }else{ %>
+            <section class = "no-items-container">
+                <img src="/images/robot-sad.svg" alt="Sad Robot Image" class = "sad-robot-image">
+                <h1>No items are currently available...</h1>
+            </section>
+        <% } %>
+    </main>
+    <script src = "/js/adminProduct.js">
+        
+    </script>
+    <%if (user){%>
+        <script src = "/js/main.js"></script>
+    <%} %>
+    
+</body>
+</html>

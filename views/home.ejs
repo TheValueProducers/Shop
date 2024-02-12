@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class = "nav-list">
+                <li><a href="/api/v1/home" class = "home nav-tag">Home</a></li>
+                <li><a href="/api/v1/shop" class = "shop nav-tag">Shopping</a></li>
+                <li><a href="/api/v1/admin" class = "admin nav-tag">Admin</a></li>
+                <ul id = "account-list">
+                    <a href="/api/v1/login" class="material-symbols-outlined" id = "account-symbol">account_circle</a>
+                    <ul class = "dropdown-list">
+
+                        <li><a href="/api/v1/register">Register</a></li>
+                        <li>
+                            <% if (!user){%>
+                                <a href="/api/v1/login"><%= "Login"%></a>
+                            <% }else{  %>
+                                <a href="#" id = "log-out"><%= "Log Out" %></a>
+                            <% } %>
+                        </li>
+                    </ul>
+                </ul>
+                <li id = "cart-symbol"><a class="material-symbols-outlined cart-symbol-link" href = "/api/v1/check-out">shopping_cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome To The Home Page,  <%= user.username %>!</h1>
+    </main>
+    <%if (user){%>
+        <script src = "/js/main.js"></script>
+    <%} %>
+    
+</body>
+</html>

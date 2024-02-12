@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <ul class = "nav-list">
+                <li><a href="/api/v1/home" class = "home nav-tag">Home</a></li>
+                <li><a href="/api/v1/shop" class = "shop nav-tag">Shopping</a></li>
+                <li><a href="/api/v1/admin" class = "admin nav-tag">Admin</a></li>
+                <ul id = "account-list">
+                    <a href="/api/v1/login" class="material-symbols-outlined" id = "account-symbol">account_circle</a>
+                    <ul class = "dropdown-list">
+
+                        <li><a href="/api/v1/register">Register</a></li>
+                        <li>
+                            <% if (!user){%>
+                                <a href="/api/v1/login"><%= "Login"%></a>
+                            <% }else{  %>
+                                <a href="#" id = "log-out"><%= "Log Out" %></a>
+                            <% } %>
+                        </li>
+                    </ul>
+                </ul>
+
+                <li id = "cart-symbol"><a class="material-symbols-outlined cart-symbol-link" href = "/api/v1/check-out">shopping_cart</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <% if (items.length !== 0){ %>
+    <main>
+        
+            <section>
+                <%for(let i = 0; i < items.length; i++){ %>
+                    <div class = "item-section">
+                        
+                        <img src=<%= items[i].image_link %>>
+                        <h3><%= items[i].name %></h3>
+                        <p><%= items[i].description %></p>
+                        <h5>$<%= items[i].price %></h5>
+                        <form class = "user-edit" action = "/api/v1/shop/add-to-cart" method = "POST">
+                            <button class = "cart-button" type = "submit">Add To Cart</button>
+                            <input type="number" class = "quantity" min = "1" max = "99" name = "quantity" required>
+                            <input type="hidden" name = "productId" value = <%= items[i].id %>>
+                        </form>
+
+                    </div>
+                <% } %>
+            </section>
+        
+            
+        
+        
+    </main>
+    <% }else{ %>
+    <main class = "empty-page">
+        <img src="/images/robot-sad.svg" alt="Sad Robot" class = "sad-robot" >
+        <h1>We're out of stock. Hang on!</h1>
+        
+        
+    </main>
+        <% } %>
+    <%if (user){%>
+        <script src = "/js/main.js"></script>
+    <%} %>
+    
+    
+</body>
+</html>
